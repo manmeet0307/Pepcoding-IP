@@ -36,7 +36,7 @@ using namespace std;
         {
             m[v[i].key]++;
         }
-        else if(v[i].op == 'R')
+        else if(v[i].op == 'R' && m.count(v[i].key))
         {
             m[v[i].key]--;
             if(m[v[i].key] == 0)
