@@ -1,6 +1,6 @@
 #include<iostream>
- #include<string>
- #include<bits/stdc++.h>
+#include<string>
+#include<bits/stdc++.h>
  using namespace std;
  class mycomp{
  public:
