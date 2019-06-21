@@ -18,7 +18,7 @@
              int p = arr[i] * arr[j];
              if(s.count(p))
              {
-                 cout<<arr[i]<< " "<<arr[j]<<endl;
+                // cout<<arr[i]<< " "<<arr[j]<<endl;
                  return 1;
              }
              s.insert(p);
