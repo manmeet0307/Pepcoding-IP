@@ -22,10 +22,7 @@
         {
             start++;
             set1.erase(arr[start]);
-//            if(start > e)
-//            {
-//                e = start;
-//            }
+
         }
     }
     return ans;
