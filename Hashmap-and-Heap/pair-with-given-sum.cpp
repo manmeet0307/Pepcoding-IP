@@ -24,7 +24,8 @@
             v.push_back(make_pair(nums1[i],k-nums1[i]));
          }
      }
-
+    if(v.size() == 0)  cout<<"-1";
+    sort(v.begin() , v.end());
      for(int i = 0 ; i < v.size() ; i++)
      {
          if(i==v.size()-1)
@@ -32,7 +33,7 @@
              cout<<v[i].first<<" " <<v[i].second;
          }
          else{
-            cout<<v[i].first<<" " <<v[i].second<<" , ";
+            cout<<v[i].first<<" " <<v[i].second<<", ";
          }
      }
 
