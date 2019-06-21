@@ -6,7 +6,9 @@ using namespace std;
  public:
     bool operator()(pair<char,int> one , pair<char,int> two)
     {
-        return one.second < two.second ;
+        if( one.second < two.second ) return true ;
+        else if(one.second == two.second) return one.first > two.first;
+        return false;
     }
  };
  string frequencySort(string s) {
@@ -39,3 +41,4 @@ using namespace std;
      cin>>s;
      cout<<frequencySort(s);
  }
+
