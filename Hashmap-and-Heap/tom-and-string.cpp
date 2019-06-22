@@ -20,7 +20,7 @@
          }
         s += ((r)+ m[line[i]] );
         r++;
-        cout<<s<< " " << c<<endl;
+       // cout<<s<< " " << c<<endl;
      }
      return s * (c+1);
  }
