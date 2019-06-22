@@ -52,7 +52,7 @@ string rethashcode(string strs)
      vector<vector<string>> ans;
      for(it = m.begin() ; it!=m.end() ; it++)
      {
-        // sort((it->second).begin() , (it->second).end() );
+         sort((it->second).begin() , (it->second).end() );
          ans.push_back(it->second);
      }
 return ans;
