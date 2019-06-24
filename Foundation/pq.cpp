@@ -1,0 +1,198 @@
+#include<iostream>
+#include<vector>
+#include<string>
+using namespace std;
+
+template<class T>
+class pq
+{
+    private:
+        vector<T> list;
+        bool (*comptor)(const T& o1, const T& o2)= NULL;
+
+        void swap(int i, int j)
+        {
+            T ith = list[i];
+            T jth = list[j];
+            list[i] = jth;
+            list[j] = ith;
+        }
+
+        // if i is higher priority return true, else return false
+        bool ishp(int i, int j)
+        {
+            if(this->comptor == NULL)
+            {
+                return list[j] < list[i];
+            }
+            else
+            {
+                return comptor(list[i], list[j]);
+            }
+        }
+
+        void upheapify(int i)
+        {
+            if(i == 0)
+                return;
+
+            int pi = (i - 1) / 2;
+            if(ishp(i, pi) == true)
+            {
+                swap(i, pi);
+                upheapify(pi);
+            }
+        }
+
+        void downheapify(int i)
+        {
+            int li = 2 * i + 1;
+            int ri = 2 * i + 2;
+
+            int hpi = i;
+            if(li < list.size() && ishp(li, hpi) == true)
+            {
+                hpi = li;
+            }
+
+            if(ri < list.size() && ishp(ri, hpi) == true)
+            {
+                hpi = ri;
+            }
+
+            if(hpi != i)
+            {
+                swap(i, hpi);
+                downheapify(hpi);
+            }
+        }
+    public:
+        pq()
+        {
+            this->comptor = NULL;
+        }
+
+        pq(bool (*comptor)(const T& o1, const T& o2))
+        {
+            this->comptor = comptor;
+        }
+     pq(vector<T> &arr )
+     {
+         for(int i = 0 ; i <arr.size() ;i++)
+         {
+             list.push_back(arr[i]);
+         }
+         for(int i = list.size()-1 ; i >=0 ; i-- )
+         {
+             downheapify(i);
+         }
+     }
+        void push(T val)
+        {
+            list.push_back(val);
+            upheapify(list.size() - 1);
+        }
+
+        void pop()
+        {
+            swap(0, list.size() - 1);
+            list.pop_back();
+            downheapify(0);
+        }
+
+        T top()
+        {
+            return list[0];
+        }
+
+        int size()
+        {
+            return list.size();
+        }
+};
+
+class Student
+{
+    public:
+        int marks;
+        int extra;
+        string name;
+
+        bool operator<(const Student& o) const  // this const is for this class data members
+        {
+            return this->name.compare(o.name) < 0;
+        }
+
+        Student(int marks, int extra, string name)
+        {
+            this->marks = marks;
+            this->extra = extra;
+            this->name = name;
+        }
+
+        void display()
+        {
+            cout << "[" << this->name << ":" << this->marks << ", "
+                 << this->extra << "]" << endl;
+        }
+};
+
+bool StudentMarksComparator(const Student& o1, const Student& o2)
+{
+    return o2.marks < o1.marks;
+}
+
+bool StudentExtraComparator(const Student& o1, const Student& o2)
+{
+    return o2.extra < o1.extra;
+}
+
+bool StudentMarksExtraComparator(const Student& o1, const Student& o2)
+{
+    if(o1.marks != o2.marks)
+    {
+        return o2.marks < o1.marks;
+    }
+    else
+    {
+        return o2.extra < o1.extra;
+    }
+}
+
+bool StudentExtraMarksComparator(const Student& o1, const Student& o2)
+{
+    if(o1.extra != o2.extra)
+    {
+        return o2.extra < o1.extra;
+    }
+    else
+    {
+        return o2.marks > o1.marks;
+    }
+}
+
+int main(int argc, char** argv)
+{
+//    pq<Student> pq(StudentExtraMarksComparator);
+//
+//    pq.push(Student(8, 8, "D"));
+//    pq.push(Student(5, 5, "E"));
+//    pq.push(Student(10, 10, "A"));
+//    pq.push(Student(6, 10, "B"));
+//    pq.push(Student(10, 2, "C"));
+//
+//    while(pq.size() > 0)
+//    {
+//        Student s = pq.top(); pq.pop();
+//        s.display();
+//    }
+
+vector<int> v{10,259,30,40};
+pq<int> pq(v);
+while(pq.size() >0)
+{
+   cout<<pq.top();
+   cout<<endl;
+   pq.pop();
+}
+}
