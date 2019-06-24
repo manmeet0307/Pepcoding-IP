@@ -3,6 +3,7 @@
  #include<bits/stdc++.h>
  #include<string>
  using namespace std;
+ //note maxodd dhundane ki zarurat nhi h, koi bhi ek pure odd ko add kardo
  int longestPalindrome(string &str) {
     unordered_map<char,int> m;
     for(int i = 0 ; i < str.length() ; i++ )
