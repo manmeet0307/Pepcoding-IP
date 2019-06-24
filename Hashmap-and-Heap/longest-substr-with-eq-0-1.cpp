@@ -17,9 +17,10 @@
         if(v[i]=='0') vt[i]= -1;
         else vt[i] = v[i]-48;
      }
-    display(vt);
+   // display(vt);
      int ps = 0,ans = 0;
      unordered_map<int, int> m;
+  m[0]=-1;
      for(int i = 0 ; i < vt.size();i++)
      {
          ps +=vt[i];
