@@ -23,9 +23,9 @@
       }
       sort(s.begin() , s.end());
       sort(e.begin() , e.end());
-int rooms = 0;
-      int sptr = 0 , eptr = 0,mr=-1;
-      while(eptr < s.size())
+int rooms = 1;
+      int sptr = 1 , eptr = 0,mr=-1;
+      while(eptr < e.size() && sptr< s.size())
       {
           if(s[sptr]<e[eptr])
           {
