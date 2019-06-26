@@ -7,11 +7,7 @@
     {
         shifts[i] = (shifts[i] + shifts[i+1]) % 26;
     }
-    for(int i=0;i<shifts.size() ;i++)
-    {
-        cout<<shifts[i]<<" ";
-    }
-    cout<<endl;
+
     for(int i = 0 ; i< s.length();i++)
     {
         s[i] = ((s[i]-'a') + shifts[i])%26 + 'a';
