@@ -62,7 +62,7 @@ private :
 
         v& operator[](const k& key)
         {
-           int bi = getbucketindex(key);
+            int bi = getbucketindex(key);
             auto distr = getdataindex(bi , key);
 
             if(distr == buckets[bi].end())
@@ -72,17 +72,54 @@ private :
                 buckets[bi].push_back(node);
                 n++;
 
+                double lambda = (n*1.0)/N;
+                if(lambda > 2.0)
+                {
+                    rehash();
+
+                     bi = getbucketindex(key);
+                     distr = getdataindex(bi , key);
+                }
+
                 return buckets[bi].back().value;
             }
             else{
-
                 return distr->value;
+            }
+        }
+
+        void rehash()
+        {
+
+            list<hmnode> * oba = buckets;
+            int oldn = N;
+            N = 2*N;
+
+            buckets = new list<hmnode> [N];
+            int n = 0;
+            for(int bi = 0; bi < oldn ; bi++)
+            {
+                for(auto ditr = oba[bi].begin() ; ditr != oba[bi].end() ; ditr++)
+                {
+                    (*this)[ditr->key] = ditr->value;
+                }
+            }
+        }
+        void display()
+        {
+            for(int bi = 0; bi < N ; bi++)
+            {
+                for(auto ditr = buckets[bi].begin() ; ditr != buckets[bi].end() ; ditr++)
+                {
+                    cout<<bi<<" "<<ditr->key<<" " <<ditr->value<<endl;
+                }
             }
         }
 };
 int main()
 {
     hm<string,int> h;
-    h["india"] = 1;
-    cout<<h["india"];
+    h["i"] = 1;
+    h["h"] = 1;h["g"] = 1;h["f"] = 1;h["e"] = 1;h["d"] = 1;h["c"] = 1;h["b"] = 1;h["a"] = 1;
+    h.display();
 }

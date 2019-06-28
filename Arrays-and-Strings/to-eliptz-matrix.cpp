@@ -10,7 +10,7 @@
     cout<<matrix[0].size()<<endl;
 */
     signed int x = matrix[0].size();
-    cout<<(g<x);
+    //cout<<(g<x);
     for(int gap = -(matrix.size()-1) ; gap < x ; gap++)
     {
 
@@ -25,7 +25,7 @@
             j = 0;
             i = j - gap;
         }
-        cout<<i<< " "<<j<<" " <<gap<<" "<< matrix[i][j]<<endl;
+       // cout<<i<< " "<<j<<" " <<gap<<" "<< matrix[i][j]<<endl;
         while(i < m && j < n)
         {
             cout<<i<<" " <<j;
