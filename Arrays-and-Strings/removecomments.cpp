@@ -4,20 +4,19 @@
  vector<string> removeComments(vector<string>& source) {
     vector<string> ans;
     bool dontpick = 0;
-    for(int i = 0 ; i < source.size() ;i++)
+    string currans;
+    for(int j = 0 ; j < source.size() ;j++)
     {
-        string cur = source[i];
-        string currans;
-
+        string cur = source[j];
         string s = cur;
         for(int i = 0; i < s.length();i++)
         {
-            bool lineoff = 0;
+           // bool lineoff = 0;
             if(i+1 < cur.length() && s[i]=='/' && s[i+1] == '/')
             {
-                lineoff = 1;
+                break;
             }
-            else if(i+1 < cur.length() && s[i]=='/' && s[i+1] == '*')
+           else if(i+1 < cur.length() && s[i]=='/' && s[i+1] == '*')
             {
                 dontpick = 1;
             }
@@ -26,14 +25,19 @@
                 dontpick = 0;
                 i++;
             }
-            else if(dontpick == 0 && lineoff == 0)
+            else if(dontpick == 0 )
+
             {
-                currans += s[i];
+                currans += s[i] ;
             }
 //            cout<<currans<<endl;
         }
-        if(currans.length() > 0)
+        if(dontpick==0 && currans.length()>0)
+        {
             ans.push_back(currans);
+            currans="";
+        }
+
     }
     return ans;
  }
