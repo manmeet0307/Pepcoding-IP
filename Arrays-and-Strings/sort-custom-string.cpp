@@ -26,7 +26,13 @@ using namespace std;
         {
             if(m.count(a))
             {
-                r += a;
+
+              int f = m[a];
+              for(int x = 0 ; x < f; x++)
+              {
+                  r += a;
+              }
+              m.erase(a);
             }
         }
         return r;
