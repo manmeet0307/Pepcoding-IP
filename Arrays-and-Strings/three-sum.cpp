@@ -8,10 +8,9 @@
    vector<vector<int> > ans;
     for(int i = 0 ; i < nums.size() ; i++)
     {
-          //while(i<nums.size() && nums[i] == nums[i+1])
-            //i++;
+
         int l = i+1 , r = nums.size() - 1;
-        while(l<r)
+        while(l<=r)
         {
             if(nums[l] + nums[r] + nums[i] < 0)
             {
@@ -27,7 +26,7 @@
             }
             else
             {
-                //if(l==r) break;
+                if(l==r) break;
                 vector<int> temp{nums[i] , nums[l] , nums[r] };
                 ans.push_back(temp);
                 l++;
@@ -37,10 +36,10 @@
                 while(r>=0 && nums[r] == nums[r+1])
                     r--;
             }
-        } while(i<nums.size() && nums[i] == nums[i+1])
+        }
+
+ while(i<nums.size() && nums[i] == nums[i+1])
             i++;
-
-
     }
       return ans;
  }
@@ -74,13 +73,13 @@
      for(int i=0;i<n;i++){
          cin>>nums[i];
      }
-     vector<vector<int> >res=threeSum(nums);
-     display(res);
-//sort(nums.begin() , nums.end());
-//for(int i = 0 ; i < n ; i ++)
-//{
-//    cout<<nums[i]<<" ";
-//}
+//     vector<vector<int> >res=threeSum(nums);
+//     display(res);
+    sort(nums.begin() , nums.end());
+    for(int i = 0 ; i < n ; i ++)
+    {
+        cout<<nums[i]<<" ";
+    }
 
 
  }
