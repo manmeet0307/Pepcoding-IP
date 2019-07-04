@@ -20,7 +20,6 @@
              delta = 1;
          }
      }
-     cout<<delta;
      int n = nums.size() , f = 0;
      for(int i = 0 ; i < nums.size() ;i++)
      {
