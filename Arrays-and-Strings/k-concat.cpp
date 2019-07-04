@@ -5,9 +5,9 @@
 #include <iostream>
 #include <algorithm>
 using namespace std;
-int kadane(vector<int> v)
+long kadane(vector<long> v)
 {
-    int currmax = 0 , maxsofar = INT_MIN;
+    long currmax = 0 , maxsofar = INT_MIN;
     for(int i = 0 ; i  < v.size() ; i++)
     {
         if(currmax>=0)
@@ -22,14 +22,14 @@ int kadane(vector<int> v)
     }
     return maxsofar;
 }
-int kconcat(vector<int> v , int n , int k)
+long kconcat(vector<long> v , int n , int k)
 {
-    int s = 0;
+    long s = 0;
     for(int i = 0 ; i  < n ;i++)
     {
         s += v[i];
     }
-    vector<int> concat(2*n);
+    vector<long> concat(2*n);
     int i;
     for( i = 0 ; i  < n ; i ++)
     {
@@ -52,7 +52,7 @@ int kconcat(vector<int> v , int n , int k)
 int main() {
     int n,k;
     cin>>n>>k;
-    vector<int> v(n);
+    vector<long> v(n);
     for(int i = 0 ; i < n ; i++)
     {
         cin>>v[i];
