@@ -1,10 +1,36 @@
 #include<bits/stdc++.h>
 using namespace std;
-int lis( int arr[], int n,int * dp)
+string printlis(int * dp, int n, int arr[] , int i )
 {
+        if(i<0)
+        {
+            return "";
+        }
+    if(dp[i] == 1)
+    {
+        return to_string(arr[i])+" ";
+    }
+    string ans="";
+    for(int j = i-1;j>=0;j--)
+    {
+        if(dp[j] == dp[i] - 1 && arr[j] < arr[i])
+        {
+            ans = printlis(dp,n,arr,j);
+        }
+        if(ans.length() > 0)
+        {
+            ans += to_string(arr[i]) + " ";
+            return ans;
+        }
+    }
+    return ans;
+}
+void lis( int arr[], int n, int* dp)
+{
+    //int*dp = new int[n];
 	for(int i=0;i<n;i++)
 	{
-	  dp[i] = 0;
+	  dp[i] = 1;
 	}
 	dp[0] = 1;
 	for(int i = 1;i < n ;i++)
@@ -22,9 +48,37 @@ int lis( int arr[], int n,int * dp)
     {
         cout<<dp[i]<<" ";
     }
+
+    string a = printlis(dp,n,arr,3);
+    cout<<"lis : "<<a<<endl;
  }
- int lds( int arr[], int n ,int * dp)
+ string printlds(int *dp, int n,int arr[] ,int i)
+ {
+     if(i<0) return "";
+     if(dp[i]==1)
+     {
+         return to_string(arr[i]);
+     }
+     string p ;
+     p = to_string(arr[i]) + " ";
+     string ans = "";
+     for(int j = i+1;j<n;j++)
+     {
+         if(dp[j] == dp[i]-1 && arr[j] < arr[i])
+         {
+             ans = printlds(dp,n,arr,j);
+         }
+
+         if(ans.length() > 0)
+         {
+             return p+ans+" ";
+         }
+     }
+     return ans;
+ }
+ void lds( int arr[], int n,int * dp )
 {
+
 	for(int i=0;i<n;i++)
 	{
 	  dp[i] = 0;
@@ -46,6 +100,19 @@ int lis( int arr[], int n,int * dp)
     {
         cout<<dp[i]<<" ";
     }
+    cout<<endl;
+    cout<<"Lds"<<endl;
+    string a = printlds(dp,n,arr,0);
+    cout<<a<<endl;
+}
+
+void printlbs(int *lisar, int *ldsar,int n,int arr[],int i)
+{
+    string a = printlis(lisar , n,arr , i);
+    string b = printlds(ldsar,n,arr,i);
+    int pos = b.find(" ");
+    b = b.substr(pos+1);
+    cout<<a<<" " <<b;
 }
 int lbs( int arr[], int n )
 {
@@ -55,10 +122,17 @@ int lbs( int arr[], int n )
     lis(arr,n,lisar);
     lds(arr,n,ldsar);
     int minel = -1;
+    int index = -1;
     for(int i=0;i<n;i++)
     {
-        minel = max(lisar[i] + ldsar[i] , minel);
+        if(lisar[i]+ldsar[i] > minel)
+        {
+            minel =  lisar[i]+ldsar[i];
+            index = i;
+        }
     }
+    cout<<"lbs: "<<endl;
+     printlbs(lisar,ldsar,n,arr,index);
         return minel-1;
 
 }
@@ -66,6 +140,6 @@ int main()
 {
 int arr[] = {80, 60, 30, 40, 20, 10};
 int n = sizeof(arr)/sizeof(arr[0]);
-printf("Length of LBS is %d\n", lbs( arr, n ) );
+cout<<lbs(arr,n);
 return 0;
 }
