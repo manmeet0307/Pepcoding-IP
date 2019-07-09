@@ -1,26 +1,23 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-
-/* Function to get minimum number of trials needed in worst
-case with n eggs and k floors */
 int eggDrop(int n, int k)
 {
-    int dp[k+1][n+1];
+    int dp[n+1][k+1];
     memset(dp,0,sizeof(dp));
-    for(int j = 0 ; j < n+1; j++)
+    for(int j = 0 ; j < k+1; j++)
     {
         dp[1][j] = j;
     }
-    for(int i=1;i<k+1;i++)
+    for(int i=1;i<n+1;i++)
     {
         dp[i][1] = 1;
     }
 
-    for(int i = 2; i < k+1 ; i++)
+    for(int i = 2; i < n+1 ; i++)
     {
 
-       for(int j=2;j<n+1;j++)
+       for(int j=2;j<k+1;j++)
        {
            int mans = INT_MIN;
            int m = INT_MAX;
@@ -31,17 +28,18 @@ int eggDrop(int n, int k)
            }
            dp[i][j] = m+1;
        }
+
     }
 
-    for(int i=0;i<k+1;i++)
+    for(int i=0;i<n+1;i++)
     {
-        for(int j=0;j<n+1;j++)
+        for(int j=0;j<k+1;j++)
         {
             cout<<dp[i][j]<<" " ;
         }
         cout<<endl;
     }
-    return dp[k][n];
+    return dp[n][k];
 }
 
 /* Driver program to test to pront printDups*/
