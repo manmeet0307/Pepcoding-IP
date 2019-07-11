@@ -74,15 +74,15 @@
                 min1 = dp[i][n-1];
             }
         }
-
-        for(int i = 0;i< k;i++)
-        {
-            for(int j=0;j<n;j++)
-            {
-                cout<<dp[i][j]<<" ";
-            }
-            cout<<endl;
-        }
+//
+//        for(int i = 0;i< k;i++)
+//        {
+//            for(int j=0;j<n;j++)
+//            {
+//                cout<<dp[i][j]<<" ";
+//            }
+//            cout<<endl;
+//        }
 
         return min1;
 }
