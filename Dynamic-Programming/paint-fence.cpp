@@ -18,14 +18,14 @@
             dp[1][i] = (dp[0][i-1] + dp[1][i-1])*(k-1);
             dp[0][i] = dp[1][i-1];
         }
-         for(int i = 0 ; i < 2 ; i++)
-        {
-            for(int j=0;j<n;j++)
-            {
-                cout<<dp[i][j]<< " ";
-            }
-            cout<<endl;
-        }
+//         for(int i = 0 ; i < 2 ; i++)
+//        {
+//            for(int j=0;j<n;j++)
+//            {
+//                cout<<dp[i][j]<< " ";
+//            }
+//            cout<<endl;
+//        }
         return dp[0][n-1] + dp[1][n-1];
 }
 
