@@ -4,7 +4,8 @@
 using namespace std;
  int maxEnvelopes(vector<vector<int> >& envelopes) {
      //Write your code here
-     vector<pair<int,int> > v(envelopes.size());
+     if(envelopes.size() == 0) return 0;
+        vector<pair<int,int> > v(envelopes.size());
      for(int i=0;i< envelopes.size() ;i++)
      {
          v[i] = make_pair(envelopes[i][0] , envelopes[i][1]);
@@ -21,18 +22,18 @@ using namespace std;
      {
          for(int x = i-1 ;x >=0 ; x--)
          {
-             if(v[x].second < v[i].second )
+             if(v[x].second < v[i].second && v[x].first != v[i].first )
              {
                  lis[i] = max(lis[i] , lis[x] + 1);
              }
          }
           mlis = max(mlis , lis[i]);
-     }
-    for(int i=0;i<n;i++)
-    {
-        cout<<"pair array " <<v[i].first<<" " << v[i].second<<endl;
-        cout<<"lis: "<<lis[i] <<endl;
-    }
+      }
+    // for(int i=0;i<n;i++)
+    // {
+    //     cout<<"pair array " <<v[i].first<<" " << v[i].second<<endl;
+    //     cout<<"lis: "<<lis[i] <<endl;
+    // }
      return mlis;
  }
 
