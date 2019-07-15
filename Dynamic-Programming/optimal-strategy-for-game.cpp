@@ -10,13 +10,17 @@ int optimalStrategyOfGame(int* arr, int i,int j)
   {
       return arr[i];
   }
+  if(j == i+1)
+  {
+      return max(arr[i],arr[j]);
+  }
   if(arr[i] > arr[j])
   {
-      return arr[i] + min(optimalStrategyOfGame(arr , i+2,j-1 ) , optimalStrategyOfGame(arr,i+1,j-2));
+      return arr[i] + min(optimalStrategyOfGame(arr , i+2,j ) , optimalStrategyOfGame(arr,i+1,j-1));
   }
   else
   {
-      return arr[j] + min(optimalStrategyOfGame(arr , i+2,j-1 ) , optimalStrategyOfGame(arr,i+1,j-2));
+      return arr[j] + min(optimalStrategyOfGame(arr , i+1,j-1 ) , optimalStrategyOfGame(arr,i,j-2));
   }
 }
 int main()
