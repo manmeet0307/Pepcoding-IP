@@ -25,7 +25,7 @@ int optimalStrategyOfGame(int* arr, int n)
          }
          else
          {
-             int op1 = arr[i] + min( i+1 < n? dp[i+1][j-1] : 0,  i+2 < n? dp[i+2][j-1] : 0);
+             int op1 = arr[i] + min( i+1 < n? dp[i+1][j-1] : 0,  i+2 < n? dp[i+2][j] : 0);
              int op2 = arr[j] + min(i+1<n ? dp[i+1][j-1] : 0, j-2 >=0 ? dp[i][j-2] : 0);
              dp[i][j] = max(op1,op2) ;
          }
@@ -35,17 +35,18 @@ int optimalStrategyOfGame(int* arr, int n)
 }
 int main()
 {
-    int arr1[] = { 8, 15, 3, 7 };
-    int n = sizeof(arr1) / sizeof(arr1[0]);
-    printf("%d\n", optimalStrategyOfGame(arr1,n));
+   int t;
+   cin>>t;
+   while(t--)
+   {
+       int n;
+       cin>>n;
+       int a[n];
+       for(int i=0;i<n;i++)
+       {
+           cin>>a[i];
+       }
+       cout<<optimalStrategyOfGame(a,n)<<endl;
 
-    int arr2[] = { 2, 2, 2, 2 };
-    n = sizeof(arr2) / sizeof(arr2[0]);
-    printf("%d\n", optimalStrategyOfGame(arr2,n));
-
-    int arr3[] = { 20, 30, 2, 2, 2, 10 };
-    n = sizeof(arr3) / sizeof(arr3[0]);
-    printf("%d\n", optimalStrategyOfGame(arr3,n));
-
-    return 0;
+   }
 }
