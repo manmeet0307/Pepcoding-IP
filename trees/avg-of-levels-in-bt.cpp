@@ -104,7 +104,7 @@
                 q.push(curr->right);
             }
         }
-        cout<<sum<<endl;
+        //cout<<sum<<endl;
         v.push_back(1.0 * sum/tel);
     }
     return v;
