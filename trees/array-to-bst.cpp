@@ -24,7 +24,7 @@
      Treenode * n = new Treenode(arr[mid]);
      n->left = helpercreate(arr,i,mid-1);
      n->right = helpercreate(arr,mid+1,j);
-     cout<<n->val<<endl;
+     //cout<<n->val<<endl;
      return n;
  }
  void display(Treenode * r)
