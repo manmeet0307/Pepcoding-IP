@@ -84,7 +84,7 @@
   // This is a functional problem. You have to complete this function.
   // It takes as input the root node of a binary tree. It should return
   // an arraylist containing all root-to-leaf paths in any order.
-  void helper(TreeNode * root, vector<string> &v , string psf)
+void helper(TreeNode * root, vector<string> &v , string psf)
   {
 
      if(root == NULL)
@@ -93,11 +93,15 @@
      }
       if(root->left == NULL && root->right == NULL)
       {
-         psf += (root->val + '0');
+         string t;
+        t = to_string(root->val);
+        psf += t;
           v.push_back(psf);
            return ;
       }
-      psf += (root->val + '0') ;
+      string t;
+      t = to_string(root->val);
+      psf += t;
       psf +="->";
       helper(root->left , v , psf);
       helper(root->right , v , psf);
