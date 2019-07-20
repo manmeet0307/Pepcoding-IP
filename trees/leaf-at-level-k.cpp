@@ -4,6 +4,8 @@
  #include<bits/stdc++.h>
  #include<deque>
  using namespace std;
+
+ // TreeNode class for a node of a Binary Search Tree
  class TreeNode {
      public:
  	 int val;
@@ -16,6 +18,8 @@
          right = NULL;
  	 }
  };
+
+ // utility function to display a binary tree
  void display(TreeNode* node) {
      if (node == NULL) {
          return;
@@ -32,6 +36,7 @@
      display(node->right);
  }
 
+ //Don't change code of utility function.
  TreeNode* stringToTreeNode(string input) {
      int first = input.find_first_not_of(' ');
      int last = input.find_last_not_of(' ');
@@ -75,60 +80,50 @@
      }
      return root;
  }
- class Pair
- {
-     public:
-     bool isbst;
-     int min1;
-     int max1;
-     TreeNode * lbr;
-     int lbs;
- };
- Pair helper(TreeNode* root)
- {
-     if(root == NULL)
-     {
-         Pair p;
-         p.isbst = true;
-         p.min1 = INT_MAX;
-         p.max1 = INT_MIN;
-         p.lbr = NULL;
-         p.lbs = 0;
-         return p;
-     }
 
-     Pair lp = helper(root->left);
-     Pair rp = helper(root->right);
+ // This is a functional problem. You have to complete this function.
+ // It takes as input the root node of the given tree. It should return true
+ // if all the leaf nodes are at the same level, else should return false.
+ bool check(TreeNode* root) {
+    if(root == NULL)
+    {
+        return true;
+    }
+    queue<TreeNode *> q;
+    q.push(root);
+    int level = 0 , rl = -1;
+    while(!q.empty())
+    {
+        int c = q.size();
+        level++;
+        while(c--)
+        {
+           TreeNode * curr = q.front();
+        q.pop();
 
-     Pair ans ;
-     ans.isbst = lp.isbst && rp.isbst && (lp.max1 < root->val) && (root->val < rp.min1);
-    ans.min1 = min(lp.min1 , min(rp.min1,root->val));
-     ans.max1 = max(lp.max1 , max(rp.max1,root->val));
-     if( ans.isbst)
-     {
-         ans.lbr = root;
-         ans.lbs = lp.lbs + rp.lbs + 1;
+        if(curr->left == NULL && curr->right == NULL)
+        {
+            if(rl == -1)
+            {
+                rl = level;
+            }
+            else if(rl != level)
+            {
+                return false;
+            }
+        }
+        if(curr->left)
+        {
+            q.push(curr->left);
+        }
+        if(curr->right)
+        {
+            q.push(curr->right);
+        }
+        }
 
-         //return ans;
-     }
-     else if(lp.lbs > rp.lbs)
-     {
-        ans.lbr = lp.lbr;
-        ans.lbs = lp.lbs ;
-     }
-     else
-     {
-        ans.lbr = rp.lbr;
-        ans.lbs = rp.lbs;
-     }
-     return ans;
- }
- int largestBst(TreeNode* node) {
-     // write your code here.
-
-    Pair x =  helper(node);
-
-    return x.lbs ;
+    }
+    return true;
  }
 
 
@@ -137,6 +132,10 @@
      string line;
      getline(cin, line);
      TreeNode* root = stringToTreeNode(line);
-     cout<<largestBst(root)<<endl;
+     if(check(root)){
+         cout<<"Yes"<<endl;
+     } else {
+         cout<<"No"<<endl;
+     }
      return 0;
  }
