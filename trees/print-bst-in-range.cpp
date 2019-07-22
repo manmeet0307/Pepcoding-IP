@@ -50,8 +50,8 @@
     }
     else
     {
-         cout<<node->val << " ";
          printNearNodes(node->left , lo , hi);
+         cout<<node->val << " ";
          printNearNodes(node->right , lo , hi);
     }
  }
