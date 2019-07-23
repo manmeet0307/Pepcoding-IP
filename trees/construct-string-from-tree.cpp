@@ -18,7 +18,7 @@
  };
 
  // This is a functional problem. You have to complete this function.
- // It takes as input the root node of the given tree. It should return
+ // It takes as input the root node of the given treetree. It should return
  // its parenthesis string representation.
  string tree2str(TreeNode* t) {
      if( !t )
