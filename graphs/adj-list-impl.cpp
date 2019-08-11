@@ -30,7 +30,21 @@ void display()
         cout<<endl;
     }
 }
-
+void printallpaths(int s , int d , string psf , int dsf, vector<bool> & visited)
+{
+    if(s == d)
+    {
+        cout<<psf<<d<<" @ "<<dsf<<endl;
+        return ;
+    }
+    visited[s] = true;
+    for(int i = 0 ; i < graph[s].size() ; i++)
+    {
+        if(!visited[graph[s][i].nbr])
+        printallpaths(graph[s][i].nbr , d, psf + to_string(s),dsf + graph[s][i].wt , visited);
+    }
+    visited[s] = false;
+}
 bool haspath(int s, int d , vector<bool> &visited)
 {
     if(s == d)
@@ -70,6 +84,6 @@ int main()
 
     display();
     vector<bool> visited(7,0);
-    cout<<haspath(0 , 6 , visited);
+    printallpaths(0 , 6 , "" , 0 , visited);
 
 }
